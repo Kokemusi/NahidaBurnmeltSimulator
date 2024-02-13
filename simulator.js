@@ -6,8 +6,8 @@ function ganyu(distance){
     CA:{
       frame:{CA:113,swap:113},
       hit_num:2,
-      hit1:(103+60*distance/5.5),
-      hit2:(103+22+60*distance/5.5),
+      hit1:Math.round(103+60*distance/5.5),
+      hit2:Math.round(103+22+60*distance/5.5),
       type:"cryo",
       GU:1,
       ICD:0
@@ -96,7 +96,9 @@ function simulate(plan){
   let TKP_CD = 0;
   let burning_pyro = 0;
   let plan_key=Object.keys(plan);
+  console.log(plan_key);
   for(let frame = 0; frame<1100; frame++){
+    console.log(frame);
     if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
      if(!(reaction="none")){
