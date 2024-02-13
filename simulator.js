@@ -129,6 +129,7 @@ function applicate(element_data){
     if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
+    return "none";
   }else
   if(type_ == "cryo"){
     if(element_units.burning>0){
@@ -147,6 +148,7 @@ function applicate(element_data){
       if(element_units.cryo<0.8*units_){
         element_units.cryo = 0.8*units_;
       }
+      return "none";
     }
   }else
   if(type_ == "dendro"){
