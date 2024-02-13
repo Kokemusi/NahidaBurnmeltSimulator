@@ -129,7 +129,7 @@ function applicate(element_data){
     if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
-  }
+  }else
   if(type_ == "cryo"){
     if(element_units.burning>0){
       element_units.burning -= 0.5*units_;
@@ -148,14 +148,15 @@ function applicate(element_data){
         element_units.cryo = 0.8*units_;
       }
     }
-  }
+  }else
   if(type_ == "dendro"){
     element_units.dendro = 0.8*units_;
     if(element_units.pyro>0 && element_units.burning==0){
       element_units.burning = 2;
       return "burning";
     }
+  }else{
+    return "none";
   }
-  return "none";
 }
 simulate(make_plan(["swap","Nahida","tE","Q","swap","Bennett","tE","Q","swap","Ganyu","CA","CA","CA","CA","CA","CA","CA","swap"]));
