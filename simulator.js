@@ -71,11 +71,13 @@ function make_plan(rotation){
     if(rotation[i]="swap"){
       i++;
       if(!(char_field=rotation[i])){
+        char_field = rotation[i];
         reading = char_data[char_field];
         action_frame += 3;
       }
     }else{
-      plan["_"+action_frame]=reading[rotation[i]];
+      plan["_"+String(action_frame)]=reading[rotation[i]];
+      console.log(reading[rotation[i]])
       action_frame += reading[rotation[i]][rotation[i+1]];
     }
   }
