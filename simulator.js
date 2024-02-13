@@ -59,7 +59,7 @@ function bennett(){
 }
 console.log(ganyu(2));
 function make_plan(rotation){
-  let char_data = {Ganyu:ganyu(),
+  let char_data = {Ganyu:ganyu(0),
                    Nahida:nahida(),
                    Bennett:bennett()
                   };
