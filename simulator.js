@@ -77,8 +77,9 @@ function make_plan(rotation){
         action_frame += 3;
       }
     }else{
-      for(let j = 0; j<reading[rotation[i]]["hit_num"]; j++){
-        plan["_"+action_frame+reading[rotation[i]]["hit"+j]]={type:reading[rotation[i]]["type"],GU:reading[rotation[i]]["GU"],ICD:reading[rotation[i]]["ICD"]};
+      for(let j = 1; j<reading[rotation[i]]["hit_num"]+1; j++){
+        console.log(reading[rotation[i]]["hit"+j]);
+        plan["_"+(action_frame+reading[rotation[i]]["hit"+j])]={type:reading[rotation[i]]["type"],GU:reading[rotation[i]]["GU"],ICD:reading[rotation[i]]["ICD"]};
       }
       console.log(reading[rotation[i]]);
       action_frame += reading[rotation[i]]["frame"][rotation[i+1]];
