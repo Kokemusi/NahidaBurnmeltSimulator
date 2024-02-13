@@ -111,6 +111,7 @@ function simulate(plan){
     }
     if(element_units.burning>0){
       if(burning_pyro == 120){
+        burning_pyro = 0;
         element_units.pyro = 1;
       }else{
         burning_pyro++;
@@ -125,7 +126,7 @@ function applicate(element_data){
   let type_ = element_data.type;
   let units_ = element_data.GU;
   if(type_ == "pyro"){
-    if(element_units.pyro<units_){
+    if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
   }
@@ -143,7 +144,9 @@ function applicate(element_data){
         return "melt";
       }
     }else{
-      element_units.cryo = 0.8*units_;
+      if(element_units.cryo<0.8*units_){
+        element_units.cryo = 0.8*units_;
+      }
     }
   }
   if(type_ == "dendro"){
