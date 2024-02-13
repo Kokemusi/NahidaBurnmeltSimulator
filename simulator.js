@@ -98,7 +98,7 @@ function simulate(plan){
   let plan_key=Object.keys(plan);
   console.log(plan_key);
   for(let frame = 0; frame<1100; frame++){
-    console.log(frame,("_"+frame)));
+    console.log(frame,("_"+frame));
     if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
      console.log(reaction);
