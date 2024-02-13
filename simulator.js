@@ -97,7 +97,7 @@ function simulate(plan){
   let burning_pyro = 0;
   let plan_key=Object.keys(plan);
   for(let frame = 0; frame<1100; frame++){
-    if(plan_key.includes("_"+frame){
+    if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
      if(!(reaction="none")){
        if(TKP_CD==0){
