@@ -101,7 +101,7 @@ function simulate(plan){
     console.log(frame);
     if(plan_key.includes(String("_"+frame))){
      let reaction = applicate(plan["_"+frame]);
-     if(!(reaction="none")){
+     if(!(reaction=="none")){
        console.log(reaction);
        if(TKP_CD==0){
          TKP_CD = 2.5*60;
