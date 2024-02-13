@@ -77,9 +77,10 @@ function make_plan(rotation){
       }
     }else{
       plan["_"+String(action_frame)]=reading[rotation[i]];
-      console.log(reading[rotation[i]])
+      console.log(reading[rotation[i]]);
       action_frame += reading[rotation[i]][rotation[i+1]];
     }
+    console.log(action_frame,i);
   }
   console.log(plan);
 }
