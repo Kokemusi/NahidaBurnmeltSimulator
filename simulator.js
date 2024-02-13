@@ -68,9 +68,9 @@ function make_plan(rotation){
   let plan = {};
   console.log(Object.keys(char_data));
   for(let i=0; i<rotation.length-1;i++){
-    if(rotation[i]="swap"){
+    if(rotation[i]=="swap"){
       i++;
-      if(!(char_field=rotation[i])){
+      if(!(char_field==rotation[i])){
         char_field = rotation[i];
         reading = char_data[char_field];
         action_frame += 3;
