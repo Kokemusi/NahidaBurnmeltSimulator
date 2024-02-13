@@ -100,13 +100,13 @@ function simulate(plan){
     if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
      if(!(reaction="none")){
+       console.log(reaction);
        if(TKP_CD==0){
          TKP_CD = 2.5*60;
          plan_key["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
        }
      }
     }
-    console.log(reaction);
     if(element_units.burning>0){
       if(burning_pyro == 120){
         element_units.pyro = 1;
