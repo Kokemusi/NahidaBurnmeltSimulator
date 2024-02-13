@@ -1,7 +1,7 @@
 function ganyu(distance){
   let data = {
     CA:{
-      frame:{all:113},
+      frame:{CA:113,swap:113},
       hit_num:2,
       hit1:(103+60*distance/5.5),
       hit2:(103+22+60*distance/5.5),
