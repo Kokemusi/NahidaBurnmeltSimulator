@@ -101,7 +101,7 @@ function simulate(plan){
     console.log(frame,("_"+frame),plan_key.includes("_"+frame));
     if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
-     console.log(reaction);
+     console.log(reaction,element_units);
      if(!(reaction=="none")){
        if(TKP_CD==0){
          TKP_CD = 2.5*60;
