@@ -125,40 +125,38 @@ function simulate(plan){
 function applicate(element_data){
   let type_ = element_data.type;
   let units_ = element_data.GU;
+  let r = "none";
   if(type_ == "pyro"){
     if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
-    return "none";
-  }else
+  }
   if(type_ == "cryo"){
     if(element_units.burning>0){
+      r = "melt";
       element_units.burning -= 0.5*units_;
       if(element_units.burning<0){
         element_units.burning = 0;
-        return "melt";
       }
     }else if(element_units.pyro){
+      r = "melt";
       element_units.pyro -= 0.5*units_;
       if(element_units.pyro<0){
         element_units.pyro = 0;
-        return "melt";
       }
     }else{
       if(element_units.cryo<0.8*units_){
         element_units.cryo = 0.8*units_;
       }
-      return "none";
     }
-  }else
+  }
   if(type_ == "dendro"){
     element_units.dendro = 0.8*units_;
     if(element_units.pyro>0 && element_units.burning==0){
+      r = "burning";
       element_units.burning = 2;
-      return "burning";
     }
-  }else{
-    return "none";
   }
+  return r;
 }
 simulate(make_plan(["swap","Nahida","tE","Q","swap","Bennett","tE","Q","swap","Ganyu","CA","CA","CA","CA","CA","CA","CA","swap"]));
