@@ -127,12 +127,15 @@ function applicate(element_data){
   let units_ = element_data.GU;
   let r = "none";
   if(type_ == "pyro"){
-    if(element_units.pyro<0.8*units_){
+    if(element_units.dendro>0){
+      r = "burning";
+      element_units.burning = 2;
+    }else if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
   }
   if(type_ == "cryo"){
-    if(element_units.burning>0){
+    if(element_units.burning>0 && element_units.burning==0){
       r = "melt";
       element_units.burning -= 0.5*units_;
       if(element_units.burning<0){
