@@ -80,7 +80,7 @@ function make_plan(rotation){
       console.log(reading[rotation[i]]);
       action_frame += reading[rotation[i]][rotation[i+1]];
     }
-    console.log(action_frame,i);
+    console.log(action_frame,i,rotation[i]);
   }
   console.log(plan);
 }
