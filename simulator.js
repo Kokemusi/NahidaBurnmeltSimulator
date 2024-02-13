@@ -55,6 +55,7 @@ function bennett(){
       ICD:0,
     }
   };
+  return data;
 }
 console.log(ganyu(2));
 function make_plan(rotation){
