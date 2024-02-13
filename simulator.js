@@ -66,8 +66,8 @@ function make_plan(rotation){
   let action_frame = 0;
   let reading = char_data[char_field];
   let plan = {};
-  console.log(char_data.keys());
-  for(let i=0; i<rotation.length;i++){
+  console.log(Object.keys(char_data));
+  for(let i=0; i<rotation.length-1;i++){
     if(rotation[i]="swap"){
       i++;
       if(!(char_field=rotation[i])){
@@ -75,8 +75,10 @@ function make_plan(rotation){
         action_frame += 3;
       }
     }else{
-      reading[rotation[i]];
+      plan["_"+action_frame]=reading[rotation[i]];
+      action_frame += reading[rotation[i]][rotation[i+1]];
     }
   }
+  console.log(plan);
 }
-make_plan(["swap","Nahida","tE","Q","swap","Bennett","tE","Q","swap","Ganyu","CA","CA","CA","CA","CA","CA","CA"]);
+make_plan(["swap","Nahida","tE","Q","swap","Bennett","tE","Q","swap","Ganyu","CA","CA","CA","CA","CA","CA","CA","done"]);
