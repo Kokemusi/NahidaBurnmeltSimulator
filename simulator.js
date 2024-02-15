@@ -116,7 +116,7 @@ function simulate(const_plan){
 	   	 	ctx.fillStyle = "#000000";
 			ctx.fillRect(frame*frame_x+1,0,frame_x,4/5*canvas.height);
 			ctx.fillStyle = color_tag[damage_data.type];
-			ctx.fillRect(frame*frame_x,type_y*(1/2-(damage_data.GU/8)+y_tag[damage_data.type]),3*frame_x,damage_data.GU*type_y/4);
+			ctx.fillRect(frame*frame_x,type_y*(1/2-0.9*(damage_data.GU/4)+y_tag[damage_data.type]),3*frame_x,0.9*damage_data.GU*type_y/2);
 			console.log(plan["_"+frame]);
 			let reaction = applicate(plan["_"+frame]);
     			console.log(reaction,element_units);
@@ -215,7 +215,9 @@ function applicate(element_data){
     }
   }
   if(type_ == "dendro"){
-    element_units.dendro = 0.8*units_;
+    if(element_units.burning==0 && element_units.dendro <0.8*units_){
+  	  element_units.dendro = 0.8*units_;
+    }
     if(element_units.dendro_==0){
       element_units.dendro_=0.8*units_/60/(2.5*units_+7);
     }
