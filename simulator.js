@@ -111,7 +111,7 @@ function simulate(plan){
          console.log("TKP is on CD for "+TKP_CD);
        }
      }else{
-       console.log("this attac triggered no reaction");
+       console.log("this attack triggered no reaction");
      }
     }
     if(element_units.burning>0){
