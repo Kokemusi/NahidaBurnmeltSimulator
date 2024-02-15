@@ -99,6 +99,7 @@ function simulate(plan){
   console.log(plan_key);
   for(let frame = 0; frame<1100; frame++){
     if(plan_key.includes("_"+frame)){
+     console.log(plan["_"+frame]);
      let reaction = applicate(plan["_"+frame]);
      console.log(reaction,element_units);
      if(!(reaction=="none")){
