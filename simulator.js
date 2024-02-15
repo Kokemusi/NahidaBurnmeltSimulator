@@ -2,6 +2,8 @@
 let element_units = {cryo:0,dendro:0,pyro:0,burning:0,cryo_:0,dendro_:0,pyro_:0,burning_:0};
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 const color_tag = {cryo:"#C2FFFF",dendro:"#8CFFFF",pyro:"#FF0000",burning:"#FF6D00"};
 const y_tag = {cryo:0,dendro:1,pyro:2,burning:3};
 //関数定義
