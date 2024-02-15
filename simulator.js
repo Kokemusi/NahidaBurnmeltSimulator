@@ -148,6 +148,7 @@ function simulate(const_plan){
   	    if(!(element_units.dendro>0)){
   	      element_units.dendro=0;
   	      element_units.dendro_=0;
+		element_units.burning=0;  
   	    }else{
 		    element_units.dendro -=Math.max(0.4/60,2*(element_units.dendro_));
 	    }
