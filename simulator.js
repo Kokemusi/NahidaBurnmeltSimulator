@@ -99,78 +99,82 @@ function make_plan(rotation){
 }
 
 function simulate(const_plan){
-  let plan = const_plan;
-  let TKP_CD = 0;
-  let burning_pyro = 0;
-  let plan_key;
-	let frame_x = canvas.width/1100;
-	let type_y = canvas.height/4;
-  for(let frame = 0; frame<1100; frame++){
-	  plan_key=Object.keys(plan);
-	  if(plan_key.includes("_"+frame)){
-		let damage_data = plan["_"+frame];
-	    	ctx.fillStyle = "#000000";
-		ctx.fillRect(frame*frame_x+1,0,1,canvas.height);
-		ctx.fillStyle = color_tag[damage_data.type];
-		ctx.fillRect(frame*frame_x,type_y*(1/2-(damage_data.GU/8)+y_tag[damage_data.type]),3*frame_x,damage_data.GU*type_y/4);
-		console.log(plan["_"+frame]);
-		let reaction = applicate(plan["_"+frame]);
-    		console.log(reaction,element_units);
-	  if(!(reaction=="none")){
-		if(reaction == "burning"){
-			ctx.fillStyle = color_tag["burning"];
-			ctx.fillRect(frame*frame_x,type_y*(y_tag["burning"]),3*frame_x,type_y);
-		}
-     		if(TKP_CD==0){
-      			console.log("TKP triggered",plan_key);
-        		TKP_CD = 2.5*60;
-        		plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
-        		console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
-      		}else{
-        		console.log("TKP is on CD for "+TKP_CD);
-      		}
+	let plan = const_plan;
+	let TKP_CD = 0;
+	let burning_pyro = 0;
+	let plan_key;let frame_x = canvas.width/1100;
+	let type_y = canvas.height/5;
+        let element_key = Object.key(color_tag);
+	for(let frame = 0; frame<1100; frame++){
+                for(let k=0; k<element_key.length; k++){
+                        ctx.fillStyle = color_tag[element_key[k]];
+                        ctx.fillRect = ctx.fillRect(frame*frame_x+1,4*type_y+k*type_y/element_key.length,3*frame_x,element_units[element_key[k]]*type_y/element_key.length/4);
+                }
+		plan_key=Object.keys(plan);
+		if(plan_key.includes("_"+frame)){
+			let damage_data = plan["_"+frame];
+	   	 	ctx.fillStyle = "#000000";
+			ctx.fillRect(frame*frame_x+1,0,1,canvas.height);
+			ctx.fillStyle = color_tag[damage_data.type];
+			ctx.fillRect(frame*frame_x,type_y*(1/2-(damage_data.GU/8)+y_tag[damage_data.type]),3*frame_x,damage_data.GU*type_y/4);
+			console.log(plan["_"+frame]);
+			let reaction = applicate(plan["_"+frame]);
+    			console.log(reaction,element_units);
+		if(!(reaction=="none")){
+			if(reaction == "burning"){
+				ctx.fillStyle = color_tag["burning"];
+				ctx.fillRect(frame*frame_x,type_y*(y_tag["burning"]),3*frame_x,type_y);
+			}
+     			if(TKP_CD==0){
+      				console.log("TKP triggered",plan_key);
+        			TKP_CD = 2.5*60;
+        			plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+        			console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
+      			}else{
+        			console.log("TKP is on CD for "+TKP_CD);
+      			}
+   	 	}else{
+     			console.log("this attack triggered no reaction");
+    		}
+	  }
+  	if(element_units.burning>0){
+    		if(burning_pyro == 120){
+    	  	burning_pyro = 0;
+    	    element_units.pyro = 0.8;
+    	    element_units.pyro_ = 0.8/60/(2.5*0.8+7);
+ 	     }else{
+  	      burning_pyro++;
+ 	     }
+  	    if(!(element_units.dendro>0)){
+  	      element_units.dendro=0;
+  	      element_units.dendro_=0;
+  	    }else{
+		    element_units.dendro -=Math.max(0.4/60,2*(element_units.dendro_));
+	    }
     	}else{
-     		console.log("this attack triggered no reaction");
-    	}
-  }
-  if(element_units.burning>0){
-    	if(burning_pyro == 120){
-      	burning_pyro = 0;
-        element_units.pyro = 0.8;
-        element_units.pyro_ = 0.8/60/(2.5*0.8+7);
-      }else{
-        burning_pyro++;
-      }
-      if(!(element_units.dendro>0)){
-        element_units.dendro=0;
-        element_units.dendro_=0;
-      }else{
-        element_units.dendro -=Math.max(0.4/60,2*(element_units.dendro_));
-      }
-    }else{
-      if(!(element_units.dendro>0)){
-        element_units.dendro=0;
-        element_units.dendro_=0;
-      }else{
-        element_units.dendro -=element_units.dendro_;
-      }
-    }
-    if(!(element_units.pyro>0)){
-      element_units.pyro=0;
-      element_units.pyro_=0;
-    }else{
-      element_units.pyro -=element_units.pyro_;
-    }
-    if(!(element_units.cryo>0)){
-      element_units.cryo=0;
-      element_units.cryo_=0;
-    }else{
-      element_units.cryo -=element_units.cryo_;
-    }
-    if(TKP_CD>0){
-      TKP_CD--;
-    }
-  }
+ 	     if(!(element_units.dendro>0)){
+    	    element_units.dendro=0;
+     	   element_units.dendro_=0;
+ 	     }else{
+ 	       element_units.dendro -=element_units.dendro_;
+  	    }
+ 	   }
+	    if(!(element_units.pyro>0)){
+ 	     element_units.pyro=0;
+ 	     element_units.pyro_=0;
+	    }else{
+  	    element_units.pyro -=element_units.pyro_;
+	    }
+	    if(!(element_units.cryo>0)){
+	      element_units.cryo=0;
+	      element_units.cryo_=0;
+	    }else{
+ 	     element_units.cryo -=element_units.cryo_;
+	    }
+	    if(TKP_CD>0){
+ 	     TKP_CD--;
+	    }
+	  }
   console.log(plan_key);
 }
 
