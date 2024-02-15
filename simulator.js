@@ -126,6 +126,7 @@ function simulate(plan){
       TKP_CD--;
     }
   }
+  console.log(plan_key);
 }
 function applicate(element_data){
   let type_ = element_data.type;
