@@ -4,7 +4,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-const color_tag = {cryo:"#C2FFFF",dendro:"#8CFFFF",pyro:"#FF0000",burning:"#FF6D00"};
+const color_tag = {cryo:"#C2FFFF",dendro:"#A3FF20",pyro:"#FF0000",burning:"#FF6D00"};
 const y_tag = {cryo:0,dendro:1,pyro:2,burning:3};
 //関数定義
 function ganyu(distance){
@@ -110,7 +110,7 @@ function simulate(const_plan){
     if(plan_key.includes("_"+frame)){
 			let damage_data = plan["_"+frame];
 			ctx.fillStyle = color_tag[damage_data.type];
-			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),frame_x,damage_data.GU*type_y/4);
+			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),2*frame_x,damage_data.GU*type_y/4);
 			console.log(plan["_"+frame]);
 			let reaction = applicate(plan["_"+frame]);
     	console.log(reaction,element_units);
