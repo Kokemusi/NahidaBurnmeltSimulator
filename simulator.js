@@ -113,17 +113,15 @@ function simulate(const_plan){
 		plan_key=Object.keys(plan);
 		if(plan_key.includes("_"+frame)){
 			let damage_data = plan["_"+frame];
-	   	 	ctx.fillStyle = "#000000";
-			ctx.fillRect(frame*frame_x+1,0,frame_x,4/5*canvas.height);
 			ctx.fillStyle = color_tag[damage_data.type];
-			ctx.fillRect(frame*frame_x,type_y*(1/2-0.9*(damage_data.GU/4)+y_tag[damage_data.type]),3*frame_x,0.9*damage_data.GU*type_y/2);
+			ctx.fillRect(frame*frame_x,type_y*(1/2-0.9*(damage_data.GU/4)+y_tag[damage_data.type]),frame_x,0.9*damage_data.GU*type_y/2);
 			console.log(plan["_"+frame]);
 			let reaction = applicate(plan["_"+frame]);
     			console.log(reaction,element_units);
 		if(!(reaction=="none")){
 			if(reaction == "burning"){
 				ctx.fillStyle = color_tag["burning"];
-				ctx.fillRect(frame*frame_x,type_y*(y_tag["burning"]),3*frame_x,type_y);
+				ctx.fillRect(frame*frame_x,type_y*(y_tag["burning"]),frame_x,type_y);
 			}
      			if(TKP_CD==0){
       				console.log("TKP triggered",plan_key);
