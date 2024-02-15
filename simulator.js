@@ -92,7 +92,8 @@ function make_plan(rotation){
   return plan;
 }
 
-function simulate(plan){
+function simulate(const_plan){
+  let plan = const_plan;
   let TKP_CD = 0;
   let burning_pyro = 0;
   let plan_key;
