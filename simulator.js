@@ -135,13 +135,13 @@ function applicate(element_data){
     }
   }
   if(type_ == "cryo"){
-    if(element_units.burning>0 && element_units.burning==0){
+    if(element_units.burning>0){
       r = "melt";
       element_units.burning -= 0.5*units_;
       if(element_units.burning<0){
         element_units.burning = 0;
       }
-    }else if(element_units.pyro){
+    }else if(element_units.pyro>0){
       r = "melt";
       element_units.pyro -= 0.5*units_;
       if(element_units.pyro<0){
