@@ -2,7 +2,7 @@
 let element_units = {cryo:0,dendro:0,pyro:0,burning:0,cryo_:0,dendro_:0,pyro_:0,burning_:0};
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-canvas.width = 0.8*window.innerWidth;
+canvas.width = 2.0*window.innerWidth;
 canvas.height = 0.8*window.innerHeight;
 const color_tag = {cryo:"#C2FFFF",dendro:"#A3FF20",pyro:"#FF0000",burning:"#FF6D00"};
 const y_tag = {cryo:0,dendro:1,pyro:2,burning:3};
@@ -114,7 +114,7 @@ function simulate(const_plan){
 		if(plan_key.includes("_"+frame)){
 			let damage_data = plan["_"+frame];
 	   	 	ctx.fillStyle = "#000000";
-			ctx.fillRect(frame*frame_x+1,0,1,4/5*canvas.height);
+			ctx.fillRect(frame*frame_x+1,0,frame_x,4/5*canvas.height);
 			ctx.fillStyle = color_tag[damage_data.type];
 			ctx.fillRect(frame*frame_x,type_y*(1/2-(damage_data.GU/8)+y_tag[damage_data.type]),3*frame_x,damage_data.GU*type_y/4);
 			console.log(plan["_"+frame]);
