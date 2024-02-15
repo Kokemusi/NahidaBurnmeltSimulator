@@ -106,28 +106,34 @@ function simulate(const_plan){
 	let frame_x = canvas.width/1100;
 	let type_y = canvas.height/4;
   for(let frame = 0; frame<1100; frame++){
-    plan_key=Object.keys(plan);
-    if(plan_key.includes("_"+frame)){
-			let damage_data = plan["_"+frame];
-			ctx.fillStyle = color_tag[damage_data.type];
-			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),2*frame_x,damage_data.GU*type_y/4);
-			console.log(plan["_"+frame]);
-			let reaction = applicate(plan["_"+frame]);
-    	console.log(reaction,element_units);
-    	if(!(reaction=="none")){
-      	if(TKP_CD==0){
-        	console.log("TKP triggered",plan_key);
-        	TKP_CD = 2.5*60;
-        	plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
-        	console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
-      	}else{
-        	console.log("TKP is on CD for "+TKP_CD);
-      	}
+	  plan_key=Object.keys(plan);
+	  if(plan_key.includes("_"+frame)){
+		let damage_data = plan["_"+frame];
+	    	ctx.fillStyle = "#000000";
+		ctx.fillRect(frame*frame_x,0,1,canvas.height);
+		ctx.fillStyle = color_tag[damage_data.type];
+		ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),2*frame_x,damage_data.GU*type_y/4);
+		console.log(plan["_"+frame]);
+		let reaction = applicate(plan["_"+frame]);
+    		console.log(reaction,element_units);
+	  if(!(reaction=="none")){
+		if(reaction == burning){
+			ctx.fillStyle = color_tag[burning];
+			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[burning]),2*frame_x,type_y);
+		}
+     		if(TKP_CD==0){
+      			console.log("TKP triggered",plan_key);
+        		TKP_CD = 2.5*60;
+        		plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+        		console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
+      		}else{
+        		console.log("TKP is on CD for "+TKP_CD);
+      		}
     	}else{
-      	console.log("this attack triggered no reaction");
+     		console.log("this attack triggered no reaction");
     	}
-  	}
-  	if(element_units.burning>0){
+  }
+  if(element_units.burning>0){
     	if(burning_pyro == 120){
       	burning_pyro = 0;
         element_units.pyro = 0.8;
