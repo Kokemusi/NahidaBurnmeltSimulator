@@ -118,8 +118,8 @@ function simulate(const_plan){
     		console.log(reaction,element_units);
 	  if(!(reaction=="none")){
 		if(reaction == burning){
-			ctx.fillStyle = color_tag[burning];
-			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[burning]),2*frame_x,type_y);
+			ctx.fillStyle = color_tag["burning"];
+			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag["burning"]),2*frame_x,type_y);
 		}
      		if(TKP_CD==0){
       			console.log("TKP triggered",plan_key);
