@@ -108,7 +108,7 @@ function simulate(const_plan){
 	for(let frame = 0; frame<1100; frame++){
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
-                        ctx.fillRect = ctx.fillRect(frame*frame_x+1,4*type_y+k*type_y/element_key.length,3*frame_x,element_units[element_key[k]]*type_y/element_key.length/4);
+                        ctx.fillRect(frame*frame_x+1,4*type_y+k*type_y/element_key.length,3*frame_x,element_units[element_key[k]]*type_y/element_key.length/4);
                 }
 		plan_key=Object.keys(plan);
 		if(plan_key.includes("_"+frame)){
