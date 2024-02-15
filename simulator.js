@@ -98,15 +98,19 @@ function simulate(plan){
   let plan_key=Object.keys(plan);
   console.log(plan_key);
   for(let frame = 0; frame<1100; frame++){
-    console.log(frame,("_"+frame),plan_key.includes("_"+frame));
     if(plan_key.includes("_"+frame)){
      let reaction = applicate(plan["_"+frame]);
      console.log(reaction,element_units);
      if(!(reaction=="none")){
        if(TKP_CD==0){
+         console.log("TKP triggered");
          TKP_CD = 2.5*60;
          plan_key["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+       }else{
+         console.log("TKP is on CD for "+TKP_CD);
        }
+     }else{
+       console.log("this attac triggered no reaction");
      }
     }
     if(element_units.burning>0){
