@@ -117,7 +117,7 @@ function simulate(const_plan){
 		let reaction = applicate(plan["_"+frame]);
     		console.log(reaction,element_units);
 	  if(!(reaction=="none")){
-		if(reaction == burning){
+		if(reaction == "burning"){
 			ctx.fillStyle = color_tag["burning"];
 			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag["burning"]),2*frame_x,type_y);
 		}
