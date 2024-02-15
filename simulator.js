@@ -105,10 +105,10 @@ function simulate(const_plan){
      console.log(reaction,element_units);
      if(!(reaction=="none")){
        if(TKP_CD==0){
-         console.log("TKP triggered");
+         console.log("TKP triggered",plan_key);
          TKP_CD = 2.5*60;
-         plan_key["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
-         console.log("TKP will damage in frame" +"_"+(frame+4));
+         plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+         console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
        }else{
          console.log("TKP is on CD for "+TKP_CD);
        }
