@@ -1,5 +1,5 @@
 //変数宣言
-let element_units = {cryo:0,dendro:0,pyro:0,burning:0};
+let element_units = {cryo:0,dendro:0,pyro:0,burning:0,cryo_:0,dendro_:0,pyro_:0,burning_:0};
 //関数定義
 function ganyu(distance){
   let data = {
@@ -119,10 +119,36 @@ function simulate(const_plan){
     if(element_units.burning>0){
       if(burning_pyro == 120){
         burning_pyro = 0;
-        element_units.pyro = 1;
+        element_units.pyro = 0.8;
+        element_units.pyro_ = 0.8/60/(2.5*0.8+7);
       }else{
         burning_pyro++;
       }
+      if(!(element_units.dendro>0)){
+        element_units.dendro=0;
+        element_units.dendro_=0;
+      }else{
+        element_units.dendro -=Math.max(0.4/60,2*(element_units.dendro_));
+      }
+    }else{
+      if(!(element_units.dendro>0)){
+        element_units.dendro=0;
+        element_units.dendro_=0;
+      }else{
+        element_units.dendro -=element_units.dendro_;
+      }
+    }
+    if(!(element_units.pyro>0)){
+      element_units.pyro=0;
+      element_units.pyro_=0;
+    }else{
+      element_units.pyro -=element_units.pyro_;
+    }
+    if(!(element_units.cryo>0)){
+      element_units.cryo=0;
+      element_units.cryo_=0;
+    }else{
+      element_units.cryo -=element_units.cryo_;
     }
     if(TKP_CD>0){
       TKP_CD--;
@@ -138,9 +164,11 @@ function applicate(element_data){
     if(element_units.dendro>0){
       r = "burning";
       element_units.burning = 2;
-    }else if(element_units.pyro<0.8*units_){
+    }
+    if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
+    element_units.pyro_=0.8*units/60/(2.5*units_+7);
   }
   if(type_ == "cryo"){
     if(element_units.burning>0){
@@ -158,11 +186,17 @@ function applicate(element_data){
     }else{
       if(element_units.cryo<0.8*units_){
         element_units.cryo = 0.8*units_;
+        if(element_units.cryo_==0){
+          element_units.cryo_=0.8*units/60/(2.5*units_+7);
+        }
       }
     }
   }
   if(type_ == "dendro"){
     element_units.dendro = 0.8*units_;
+    if(element_units.dendro_==0){
+      element_units.dendro_=0.8*units/60/(2.5*units_+7);
+    }
     if(element_units.pyro>0 && element_units.burning==0){
       r = "burning";
       element_units.burning = 2;
