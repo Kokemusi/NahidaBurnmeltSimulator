@@ -95,9 +95,9 @@ function make_plan(rotation){
 function simulate(plan){
   let TKP_CD = 0;
   let burning_pyro = 0;
-  let plan_key=Object.keys(plan);
-  console.log(plan_key);
+  let plan_key;
   for(let frame = 0; frame<1100; frame++){
+    plan_key=Object.keys(plan);
     if(plan_key.includes("_"+frame)){
      console.log(plan["_"+frame]);
      let reaction = applicate(plan["_"+frame]);
