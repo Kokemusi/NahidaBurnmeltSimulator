@@ -107,6 +107,7 @@ function simulate(plan){
          console.log("TKP triggered");
          TKP_CD = 2.5*60;
          plan_key["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+         console.log("TKP will damage in frame" +"_"+(frame+4));
        }else{
          console.log("TKP is on CD for "+TKP_CD);
        }
