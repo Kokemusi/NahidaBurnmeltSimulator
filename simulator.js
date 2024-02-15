@@ -1,7 +1,9 @@
 //変数宣言
 let element_units = {cryo:0,dendro:0,pyro:0,burning:0,cryo_:0,dendro_:0,pyro_:0,burning_:0};
 const canvas = document.getElementById("canvas");
-const ctx = canvas.Context("2d");
+const ctx = canvas.getContext("2d");
+const color_tag = {cryo:"#C2FFFF",dendro:"#8CFFFF",pyro:"#FF0000",burning:"#FF6D00"};
+const y_tag = {cryo:0,dendro:1,pyro:2,burning:3};
 //関数定義
 function ganyu(distance){
   let data = {
@@ -99,28 +101,33 @@ function simulate(const_plan){
   let TKP_CD = 0;
   let burning_pyro = 0;
   let plan_key;
+	let frame_x = canvas.width/1100;
+	let type_y = canvas.height/4;
   for(let frame = 0; frame<1100; frame++){
     plan_key=Object.keys(plan);
     if(plan_key.includes("_"+frame)){
-     console.log(plan["_"+frame]);
-     let reaction = applicate(plan["_"+frame]);
-     console.log(reaction,element_units);
-     if(!(reaction=="none")){
-       if(TKP_CD==0){
-         console.log("TKP triggered",plan_key);
-         TKP_CD = 2.5*60;
-         plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
-         console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
-       }else{
-         console.log("TKP is on CD for "+TKP_CD);
-       }
-     }else{
-       console.log("this attack triggered no reaction");
-     }
-    }
-    if(element_units.burning>0){
-      if(burning_pyro == 120){
-        burning_pyro = 0;
+			let damage_data = plan["_"+frame];
+			ctx.fillStyle = color_tag[damage_data.type];
+			ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),frame_x,damage_data.GU*type_y/4);
+			console.log(plan["_"+frame]);
+			let reaction = applicate(plan["_"+frame]);
+    	console.log(reaction,element_units);
+    	if(!(reaction=="none")){
+      	if(TKP_CD==0){
+        	console.log("TKP triggered",plan_key);
+        	TKP_CD = 2.5*60;
+        	plan["_"+(frame+4)]={type:"dendro",GU:1.5,ICD:1};
+        	console.log("TKP will damage in frame" +"_"+(frame+4),plan_key);
+      	}else{
+        	console.log("TKP is on CD for "+TKP_CD);
+      	}
+    	}else{
+      	console.log("this attack triggered no reaction");
+    	}
+  	}
+  	if(element_units.burning>0){
+    	if(burning_pyro == 120){
+      	burning_pyro = 0;
         element_units.pyro = 0.8;
         element_units.pyro_ = 0.8/60/(2.5*0.8+7);
       }else{
@@ -158,6 +165,7 @@ function simulate(const_plan){
   }
   console.log(plan_key);
 }
+
 function applicate(element_data){
   let type_ = element_data.type;
   let units_ = element_data.GU;
