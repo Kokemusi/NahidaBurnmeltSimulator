@@ -179,7 +179,7 @@ function applicate(element_data){
   let units_ = element_data.GU;
   let r = "none";
   if(type_ == "pyro"){
-    if(element_units.dendro>0){
+    if(element_units.dendro>0 && element_units.burning ==0){
       r = "burning";
       element_units.burning = 2;
     }
