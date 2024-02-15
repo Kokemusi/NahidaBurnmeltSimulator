@@ -104,7 +104,7 @@ function simulate(const_plan){
 	let burning_pyro = 0;
 	let plan_key;let frame_x = canvas.width/1100;
 	let type_y = canvas.height/5;
-        let element_key = Object.key(color_tag);
+        let element_key = Object.keys(color_tag);
 	for(let frame = 0; frame<1100; frame++){
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
