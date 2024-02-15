@@ -112,7 +112,7 @@ function simulate(const_plan){
 	    	ctx.fillStyle = "#000000";
 		ctx.fillRect(frame*frame_x,0,1,canvas.height);
 		ctx.fillStyle = color_tag[damage_data.type];
-		ctx.fillRect(frame*frame_x,type_y*(1/2+y_tag[damage_data.type]),2*frame_x,damage_data.GU*type_y/4);
+		ctx.fillRect(frame*frame_x,type_y*(1/2-damage_data.GU/8+y_tag[damage_data.type]),2*frame_x,damage_data.GU*type_y/4);
 		console.log(plan["_"+frame]);
 		let reaction = applicate(plan["_"+frame]);
     		console.log(reaction,element_units);
