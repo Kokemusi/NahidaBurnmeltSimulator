@@ -1,5 +1,7 @@
 //変数宣言
 let element_units = {cryo:0,dendro:0,pyro:0,burning:0,cryo_:0,dendro_:0,pyro_:0,burning_:0};
+const canvas = document.getElementById("canvas");
+const ctx = canvas.Context("2d");
 //関数定義
 function ganyu(distance){
   let data = {
