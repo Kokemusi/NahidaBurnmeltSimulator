@@ -168,7 +168,7 @@ function applicate(element_data){
     if(element_units.pyro<0.8*units_){
       element_units.pyro = 0.8*units_;
     }
-    element_units.pyro_=0.8*units/60/(2.5*units_+7);
+    element_units.pyro_=0.8*units_/60/(2.5*units_+7);
   }
   if(type_ == "cryo"){
     if(element_units.burning>0){
@@ -187,7 +187,7 @@ function applicate(element_data){
       if(element_units.cryo<0.8*units_){
         element_units.cryo = 0.8*units_;
         if(element_units.cryo_==0){
-          element_units.cryo_=0.8*units/60/(2.5*units_+7);
+          element_units.cryo_=0.8*units_/60/(2.5*units_+7);
         }
       }
     }
@@ -195,7 +195,7 @@ function applicate(element_data){
   if(type_ == "dendro"){
     element_units.dendro = 0.8*units_;
     if(element_units.dendro_==0){
-      element_units.dendro_=0.8*units/60/(2.5*units_+7);
+      element_units.dendro_=0.8*units_/60/(2.5*units_+7);
     }
     if(element_units.pyro>0 && element_units.burning==0){
       r = "burning";
