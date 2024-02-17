@@ -6,6 +6,7 @@ canvas.width = 2.0*window.innerWidth;
 canvas.height = 0.8*window.innerHeight;
 const color_tag = {cryo:"#C2FFFF",dendro:"#A3FF20",pyro:"#FF0000",burning:"#FF6D00"};
 const y_tag = {cryo:0,dendro:1,pyro:2,burning:3};
+let bennettQ_frame = 0;
 //関数定義
 function ganyu(distance){
   let data = {
@@ -91,6 +92,9 @@ function make_plan(rotation){
       for(let j = 1; j<reading[rotation[i]]["hit_num"]+1; j++){
         plan["_"+(action_frame+reading[rotation[i]]["hit"+j])]={type:reading[rotation[i]]["type"],GU:reading[rotation[i]]["GU"],ICD:reading[rotation[i]]["ICD"]};
       }
+      if(char_field == "Bennett" && rotation[i]=="Q"){
+	      bennetQ_frame = action_frame+37;
+      }
       action_frame += reading[rotation[i]]["frame"][rotation[i+1]];
     }
   }
@@ -103,8 +107,10 @@ function simulate(const_plan){
 	let TKP_CD = 0;
 	let burning_pyro = 0;
 	let plan_key;let frame_x = canvas.width/1100;
-	let type_y = canvas.height/5;
+	let type_y = 0.8*canvas.height/5;
         let element_key = Object.keys(color_tag);
+	ctx.fillStyle = "#FF0000";
+	ctx.fillRect(bennetQ_frame,5*type_y+type_y/2,frame_x*12*60,type_y/4);
 	for(let frame = 0; frame<1100; frame++){
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
