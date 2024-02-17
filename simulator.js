@@ -110,7 +110,7 @@ function simulate(const_plan){
 	let type_y = 0.8*canvas.height/5;
         let element_key = Object.keys(color_tag);
 	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(bennetQ_frame,5*type_y+type_y/2,frame_x*12*60,type_y/4);
+	ctx.fillRect(bennetQ_frame*frame_x,5*type_y+type_y/2,frame_x*12*60,type_y/4);
 	for(let frame = 0; frame<1100; frame++){
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
