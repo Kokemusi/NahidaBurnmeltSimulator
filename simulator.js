@@ -112,6 +112,10 @@ function simulate(const_plan){
 	ctx.fillStyle = "#FF0000";
 	ctx.fillRect(bennetQ_frame*frame_x,5*type_y+type_y/2,frame_x*12*60,type_y/4);
 	for(let frame = 0; frame<1100; frame++){
+		if(Math.round(frame/60)==frame/60){
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(frame*frame_x+1,0,3*frame_x,canvas.height);
+		}
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
                         ctx.fillRect(frame*frame_x+1,4*type_y+k*type_y/element_key.length,3*frame_x,element_units[element_key[k]]*type_y/element_key.length/4);
