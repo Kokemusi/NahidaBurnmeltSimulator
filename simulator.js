@@ -114,7 +114,7 @@ function simulate(const_plan){
 	for(let frame = 0; frame<1100; frame++){
 		if(Math.round(frame/60)==frame/60){
 			ctx.fillStyle = "#000000";
-			ctx.fillRect(frame*frame_x+1,0,3*frame_x,canvas.height);
+			ctx.fillRect(frame*frame_x+1,0,frame_x,canvas.height);
 		}
                 for(let k=0; k<element_key.length; k++){
                         ctx.fillStyle = color_tag[element_key[k]];
